@@ -2,7 +2,8 @@ var keystone = require('keystone');
 var Types = keystone.Field.Types;
 
 var Cause = new keystone.List('Cause',{
-	autokey: { from: 'title', path: 'key', unique: true }
+	map: { name: 'title' },
+	autokey: { path: 'slug', from: 'title', unique: true },
 });
 
 Cause.add({
