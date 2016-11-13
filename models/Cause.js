@@ -4,13 +4,15 @@ var Types = keystone.Field.Types;
 var Cause = new keystone.List('Cause');
 
 Cause.add({
-	name: { type: Types.Name, required: true, index: true },
+	title: { type: Types.Text, required: true, initial: true, index: true },
+	author: { type: Types.Relationship, ref: 'User', index: true },
 	email: { type: Types.Email, initial: true, required: true, index: true },
-	category: { type: Types.Select, required: true, initial: true, options: 'Healthcare, Womens Rights, LGBTQ', emptyOption: true },
+	categories: { type: Types.Relationship, ref: 'CauseCategory', many: true },
 	description: { type: Types.Markdown, toolbarOptions: { hiddenButtons: 'H1,H6,Code' } }
 }, 'Permissions', {
-	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true }
+	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true },
+	
 });
 
-Cause.defaultColumns = 'name, email, category';
+Cause.defaultColumns = 'title, author, categories';
 Cause.register();
