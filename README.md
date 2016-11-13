@@ -1,2 +1,2 @@
 ## howdoihelp.us
-a site for helping people
+something brand new
